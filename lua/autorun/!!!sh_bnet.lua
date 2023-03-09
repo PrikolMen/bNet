@@ -4,6 +4,10 @@ local ipairs = ipairs
 local unpack = unpack
 local net = net
 
+if SERVER then
+	util.AddNetworkString("_bNet")
+end
+
 module( "bnet" )
 
 local events = {}
@@ -35,8 +39,6 @@ local function writeData(data)
 end
 
 if SERVER then
-	util.AddNetworkString("_bNet")
-
 	function Send(ply , name , ...)
 		local data = {...}
 		net.Start("_bNet")
